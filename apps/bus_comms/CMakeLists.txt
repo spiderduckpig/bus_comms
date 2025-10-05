@@ -13,3 +13,6 @@ target_include_directories(bus_comms PUBLIC
 if (ENABLE_UNIT_TESTS)
   # add_subdirectory(unit-test)
 endif ()
+
+# Link bus_comms against mission libcsp library
+add_cfe_app_dependency(bus_comms libcsp)
