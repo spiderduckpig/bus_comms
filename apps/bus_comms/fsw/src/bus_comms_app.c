@@ -1,5 +1,5 @@
 /************************************************************************
- * Bus Communications App - minimal skeleton based on sample_app
+ * Bus Communications App 
  ************************************************************************/
 
 #include "bus_comms_app.h"

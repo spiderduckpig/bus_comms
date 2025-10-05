@@ -1,5 +1,5 @@
 /************************************************************************
- * Bus Communications App - header
+ * Bus Communications App - header file
  ************************************************************************/
 #ifndef BUS_COMMS_APP_H
 #define BUS_COMMS_APP_H
