@@ -16,12 +16,20 @@ void BUS_COMMS_AppMain(void)
     int32            status;
     CFE_SB_Buffer_t *SBBufPtr;
 
+    /* Trace: entered AppMain */
+    CFE_ES_WriteToSysLog("BUS_COMMS: AppMain entered\n");
+
     CFE_ES_PerfLogEntry(BUS_COMMS_APP_PERF_ID);
 
     status = BUS_COMMS_AppInit();
     if (status != CFE_SUCCESS)
     {
         BUS_COMMS_AppData.RunStatus = CFE_ES_RunStatus_APP_ERROR;
+        CFE_ES_WriteToSysLog("BUS_COMMS: AppInit failed RC=0x%08lX\n", (unsigned long)status);
+    }
+    else
+    {
+        CFE_ES_WriteToSysLog("BUS_COMMS: AppInit OK\n");
     }
 
     while (CFE_ES_RunLoop(&BUS_COMMS_AppData.RunStatus) == true)
@@ -52,6 +60,9 @@ int32 BUS_COMMS_AppInit(void)
 {
     int32 status;
 
+    /* Trace: starting AppInit */
+    CFE_ES_WriteToSysLog("BUS_COMMS: AppInit starting\n");
+
     BUS_COMMS_AppData.RunStatus = CFE_ES_RunStatus_APP_RUN;
     BUS_COMMS_AppData.CmdCounter = 0;
     BUS_COMMS_AppData.ErrCounter = 0;
@@ -65,6 +76,10 @@ int32 BUS_COMMS_AppInit(void)
     {
         CFE_ES_WriteToSysLog("BUS_COMMS: Error Registering Events, RC = 0x%08lX\n", (unsigned long)status);
         return status;
+    }
+    else
+    {
+        CFE_ES_WriteToSysLog("BUS_COMMS: EVS registered\n");
     }
 
     CFE_MSG_Init(CFE_MSG_PTR(BUS_COMMS_AppData.HkTlm.TelemetryHeader), CFE_SB_ValueToMsgId(BUS_COMMS_HK_TLM_MID),
