@@ -12,4 +12,6 @@
 #define BUS_COMMS_LEN_ERR_EID           6
 #define BUS_COMMS_PIPE_ERR_EID          7
 
+#define BUS_COMMS_INVALID_TASKID        8
+
 #endif /* BUS_COMMS_EVENTS_H */
